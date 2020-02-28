@@ -113,12 +113,25 @@ Robin Dérot
   
   > var=$(apt show coreutils);echo $var
 
-## Exercice 4 :
+## Exercice 5 :
 ## Aptitude
 #### Installez le paquet emacs à l’aide de la version graphique d’aptitude.
 
+  On commence par installer aptitude avec *apt install aptitude*
+  on lance aptitude, on tape "/" puis on recherche " emacs".
+  On l'installe enfin avec "+".
   
-
+## Exercice 6 :
+##  Installation d’un paquet par PPA
+#### Vérifiez qu’un nouveau fichier a été créé dans/etc/apt/sources.list.d. Que contient-il ?
+  
+  On exécute les commandes de l'énoncé.
+  On effectue les commandes suivantes :
+  > cd /etc/apt/sources.list.d
+  
+  > ls
+  
+  On obtient alors : *linuxuprising-ubuntu-java-eoan.list*
 
 
 
