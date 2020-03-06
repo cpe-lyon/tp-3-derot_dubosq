@@ -95,7 +95,7 @@ Robin Dérot
   2020-02-28 14:14:49 install fortune:all <aucune> 1:1.99.1-7build1
   ```
 ## Exercice 2 :
-#### A partir de quel paquet est installée la commandels? Comment obtenir cette informationen une seulecommande, pour n’importe quel programme (indice : la réponse est dans le poly de cours 2, dans la liste descommandes utiles)? Utilisez la réponse à pour écrire un script appeléorigine-commande(sans l’extension.sh) prenant en argument le nom d’une commande, et indiquant quel paquet l’a installée.
+#### A partir de quel paquet est installée la commande ls? Comment obtenir cette information en une seule commande, pour n’importe quel programme (indice : la réponse est dans le poly de cours 2, dans la liste des commandes utiles)? Utilisez la réponse à pour écrire un script appelé origine-commande (sans l’extension.sh) prenant en argument le nom d’une commande, et indiquant quel paquet l’a installée.
   
   On se rend dans notre répertoire personnel. On utilise la commande suivante :
   ```bash
