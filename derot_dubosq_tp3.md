@@ -242,3 +242,71 @@ Robin Dérot
   cp ~/scripts/origine-commande.deb ~/repo-cpe/packages
   reprepro -b . includedeb cosmic origine-commande.deb
   ```
+
+Pour indiquer à apt qu'il existe un nouveau dépot, on va créer repo-cpe.list dans r /etc/apt/sources.list.d :
+
+```bash
+cd /etc/apt/sources.list.d
+sudo nano repo-cpe.list
+## Dans nano
+deb file:/home/derot_dubosq/repo-cpe cosmic multiverse
+##
+```
+
+Enfin on lance *sudo apt update* pour detecter notre nouveau paquet.
+
+#### Signature du dépôt avec GPG
+*GPG est la version GNU du protocole PGP (Pretty Good Privacy), qui permet d’échanger des données de
+manière sécurisée. Ce système repose sur la notion de clés de chiffrement asymétriques (une clé publique et
+une clé privée)*
+
+On créé une nouvelle paire de clés grace à la commande :
+
+```bash
+gpg --gen-key
+Real name: derot_dubosq
+Email address: robin.derot@cpe.fr
+okay
+passphrase : gaz_ez_au_baby
+```
+Dans le fichier "distribution", on rajoute la ligne suivante :
+
+```bash
+SignWith: yes
+```
+
+On ajoute ensuite la clé à notre dépôt... :
+
+```bash
+reprepro --ask-passphrase -b . export
+```
+
+...puis la clé publique à notre dépôt :
+
+```bash
+gpg --export -a "auteur" > public.key
+```
+
+Enfin, on ajoute cette clé à la liste des clés connues de apt :
+
+```bash
+sudo apt-key add public.key
+```
+
+## Exercice 8.
+## Installation d’un logiciel à partir du code source
+*Lorsqu’un logiciel n’est disponible ni dans les dépôts officiels, ni dans un PPA, ou encore parce qu’on
+souhaite n’installer qu’une partie de ses fonctionnalités, on peut se tourner vers la compilation du code
+source.*
+*Malheureusement, cette installation "à la main" fait qu’on ne propose pas des bénéfices de la gestion de
+paquets apportée par dpkg ou apt. Heureusement, il est possible de transformer un logiciel installé "à la
+main" en un paquet, et de le gérer ensuite avec apt; c’est ce que permet par exemple checkinstall.*
+
+On commence par cloner le dépôt git suivant pour récuperer en local le code source du logiciel nudoku :
+```bash
+cd
+git clone https://github.com/jubalh/nudoku
+```
+
+On lance ensuite la commande "autoreconf -i" en installant en chaque execution les paquets manquants jusqu'a ce qu'elle ss'exxecute sans erreur : on voit donc qu'il nous manque le paquet "gettext", mais nous n'avons pas réussi à l'installer.
+
